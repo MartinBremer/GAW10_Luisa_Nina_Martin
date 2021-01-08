@@ -2531,6 +2531,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3535354997024975949, guid: c664d9280e36b474790790d49622f443,
+        type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1709936937}
     - target: {fileID: 3535354997024975951, guid: c664d9280e36b474790790d49622f443,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2600,6 +2605,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d319d4634f30947a430fb96b3d97bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &1709936937 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 3535354997024975950, guid: c664d9280e36b474790790d49622f443,
+    type: 3}
+  m_PrefabInstance: {fileID: 1709936935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1776897020
 GameObject:
   m_ObjectHideFlags: 0
