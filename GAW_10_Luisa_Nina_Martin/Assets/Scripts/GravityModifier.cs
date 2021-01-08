@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GravityModifier : MonoBehaviour
 {
+    public Rigidbody player;
+
     public Vector3 gravity;
     public float gravityForce = 9.81f;
 
@@ -18,7 +20,6 @@ public class GravityModifier : MonoBehaviour
 
     public static GravityState currentGravity;
 
-
     void Start()
     {
         Physics.gravity = new Vector3(0, -gravityForce, 0);
@@ -31,10 +32,10 @@ public class GravityModifier : MonoBehaviour
         Physics.gravity = gravity;
         timer += Time.deltaTime;
 
-        ModifyGravity(KeyCode.LeftArrow, -gravityForce, 0, GravityState.left);
-        ModifyGravity(KeyCode.RightArrow, gravityForce, 0, GravityState.right);
-        ModifyGravity(KeyCode.UpArrow, 0, gravityForce, GravityState.up);
-        ModifyGravity(KeyCode.DownArrow, 0, -gravityForce, GravityState.down);
+        ModifyGravity(KeyCode.A, -gravityForce, 0, GravityState.left);
+        ModifyGravity(KeyCode.D, gravityForce, 0, GravityState.right);
+        ModifyGravity(KeyCode.W, 0, gravityForce, GravityState.up);
+        ModifyGravity(KeyCode.S, 0, -gravityForce, GravityState.down);
 
 
         for (int i = 0; i < magneticObjects.Count; i++)
@@ -56,7 +57,7 @@ public class GravityModifier : MonoBehaviour
             switchingGravity = true;
             currentGravity = gravityState;
             gravity = new Vector3(x, y, 0);
-            timer = 0f;
+            timer = 0;
         }
     }
 }
