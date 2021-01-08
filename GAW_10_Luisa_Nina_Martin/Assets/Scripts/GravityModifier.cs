@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GravityModifier : MonoBehaviour
@@ -14,14 +15,22 @@ public class GravityModifier : MonoBehaviour
     public static bool switchingGravity;
 
     public List<MagneticObjects> magneticObjects;
+    int trueCollidedMOs;
 
-    public enum GravityState { Down, Up, Left, Right };
+    public enum GravityState
+    {
+        up,
+        down,
+        left,
+        right
+    }
 
-    public static GravityState currentGravity;
+    public static GravityState currentGravity = GravityState.down;
+
 
     void Start()
     {
-        currentGravity = GravityState.Down;
+        currentGravity = GravityState.down;
         Physics.gravity = new Vector3(0, -gravityForce, 0);
         gravity = Physics.gravity;
     }
@@ -32,15 +41,18 @@ public class GravityModifier : MonoBehaviour
         Physics.gravity = gravity;
         timer += Time.deltaTime;
 
-        ModifyGravity(KeyCode.LeftArrow, -gravityForce, 0, left, GravityState.Left);
-        ModifyGravity(KeyCode.RightArrow, gravityForce, 0, right, GravityState.Right);
-        ModifyGravity(KeyCode.UpArrow, 0, gravityForce, up, GravityState.Up);
-        ModifyGravity(KeyCode.DownArrow, 0, -gravityForce, down, GravityState.Down);
+        ModifyGravity(KeyCode.LeftArrow, -gravityForce, 0, left, GravityState.left);
+        ModifyGravity(KeyCode.RightArrow, gravityForce, 0, right, GravityState.right);
+        ModifyGravity(KeyCode.UpArrow, 0, gravityForce, up, GravityState.up);
+        ModifyGravity(KeyCode.DownArrow, 0, -gravityForce, down, GravityState.down);
+
 
         for (int i = 0; i < magneticObjects.Count; i++)
         {
             if (magneticObjects[i].collided)
+            {
                 allHaveCollided = true;
+            }
             else
             {
                 i += magneticObjects.Count;
